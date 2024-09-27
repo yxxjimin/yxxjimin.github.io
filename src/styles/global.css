@@ -1,3 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.markdown-html h1 {
+  @apply text-3xl font-bold;
+}
+
+.markdown-html h2 {
+  @apply text-2xl font-bold my-4;
+}
+
+.markdown-html h3 {
+  @apply text-xl font-bold my-4;
+}
+
+.markdown-html p {
+  @apply text-base font-normal mb-4;
+}
+
+.markdown-html ul {
+  @apply list-disc ms-4;
+}
+
+.markdown-html ol {
+  @apply list-decimal ms-4;
+}
+
+.markdown-html li {
+  @apply my-4;
+}
+
+.markdown-html code {
+  @apply text-sm font-mono bg-gray-100 p-1 rounded-md;
+}
+
+.markdown-html blockquote {
+  @apply border-l-4 border-black italic pl-4 text-gray-700;
+}
+
+.markdown-html table {
+  @apply min-w-full my-4
+}
+
+.markdown-html thead {
+  @apply border-b-2;
+}
+
+.markdown-html thead tr th {
+  @apply text-base font-semibold py-3;
+}
+
+.markdown-html tbody tr {
+  @apply border-t transition duration-300 ease-in-out hover:bg-gray-100;
+}
+
+.markdown-html tbody tr td {
+  @apply text-base py-3;
+}
+
+.markdown-html img {
+  @apply block mx-auto rounded-xl;
+}
+
+.markdown-html hr {
+  @apply my-4;
+}
+
+.gatsby-resp-image-wrapper {
+  @apply my-10;
+}
