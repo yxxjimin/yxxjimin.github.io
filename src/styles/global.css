@@ -7,11 +7,11 @@
 }
 
 .markdown-html h2 {
-  @apply text-2xl font-bold my-4;
+  @apply text-2xl font-bold mt-8 mb-4;
 }
 
 .markdown-html h3 {
-  @apply text-xl font-bold my-4;
+  @apply text-xl font-bold mt-8 mb-4;
 }
 
 .markdown-html p {
@@ -19,15 +19,15 @@
 }
 
 .markdown-html ul {
-  @apply list-disc ms-4;
+  @apply list-disc ms-4 mb-4;
 }
 
 .markdown-html ol {
-  @apply list-decimal ms-4;
+  @apply list-decimal ms-4 mb-4;
 }
 
 .markdown-html li {
-  @apply my-4;
+  @apply my-2.5;
 }
 
 .markdown-html blockquote {

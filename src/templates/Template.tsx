@@ -1,6 +1,7 @@
 import { graphql } from "gatsby";
 import * as React from "react";
 import Layout from "../components/Layout";
+import PostTitle from "../components/PostTitle";
 
 type DataProps = {
   data: {
@@ -9,6 +10,8 @@ type DataProps = {
       html: string;
       frontmatter: {
         title: string;
+        date: string;
+        categories: string;
       };
       fields: {
         slug: string;
@@ -19,16 +22,16 @@ type DataProps = {
 
 const Template = ({ data }: DataProps) => {
   return (
-    <Layout backgroundColor="bg-white">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-blue-500">
-          Title: {data.node.frontmatter.title}
-        </h1>
-        <div 
-          className="markdown-html"
-          dangerouslySetInnerHTML={{ __html: data.node.html }} 
-        />
-      </div>
+    <Layout backgroundColor="bg-white" postContent={true}>
+      <PostTitle 
+        title={data.node.frontmatter.title} 
+        date={data.node.frontmatter.date}
+        categories={data.node.frontmatter.categories}
+      />
+      <div 
+        className="markdown-html"
+        dangerouslySetInnerHTML={{ __html: data.node.html }} 
+      />
     </Layout>
   );
 };
@@ -42,6 +45,8 @@ export const query = graphql`
       html
       frontmatter {
         title
+        date(formatString: "MMMM D, YYYY")
+        categories
       }
       fields {
         slug

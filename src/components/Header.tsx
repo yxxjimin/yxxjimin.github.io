@@ -8,8 +8,8 @@ type Props = {
 const Header = ({ title }: Props) => {
   return (
     <div className="flex justify-center w-full px-6 border-b bg-white">
-      <div className="flex w-full max-w-3xl h-16 justify-between">
-        <header className="flex items-center text-2xl font-bold">
+      <div className="flex w-full max-w-4xl h-16 justify-between">
+        <header className="flex items-center text-2xl font-semibold">
           <Link to="/">{title}</Link>
         </header>
         <nav>
