@@ -30,10 +30,6 @@
   @apply my-4;
 }
 
-.markdown-html code {
-  @apply text-sm font-mono bg-gray-100 p-1 rounded-md;
-}
-
 .markdown-html blockquote {
   @apply border-l-4 border-black italic pl-4 text-gray-700;
 }
