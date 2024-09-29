@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import Header from "./Header";
+import Footer from "./Footer";
 
 type Props = {
   backgroundColor?: string;
@@ -27,6 +28,7 @@ const Layout = ({ backgroundColor, postContent = false, children }: Props) => {
           {children}
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

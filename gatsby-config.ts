@@ -4,6 +4,8 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `yxxjimin.github.io`,
     siteUrl: `https://yxxjimin.github.io/`,
+    author: `Jimin Yoo`,
+    github: `https://github.com/yxxjimin`,
   },
   graphqlTypegen: true,
   plugins: [
