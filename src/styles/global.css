@@ -3,39 +3,43 @@
 @tailwind utilities;
 
 .markdown-html h1 {
-  @apply text-3xl font-bold;
+  @apply text-3xl font-bold mt-6 mb-3 pb-1 border-b-2 border-gray-100;
 }
 
 .markdown-html h2 {
-  @apply text-2xl font-bold mt-8 mb-4;
+  @apply text-2xl font-bold mt-6 mb-3;
 }
 
 .markdown-html h3 {
-  @apply text-xl font-bold mt-8 mb-4;
+  @apply text-xl font-bold mt-6 mb-3;
 }
 
 .markdown-html p {
-  @apply text-base font-normal mb-4;
+  @apply text-base font-normal my-4;
+}
+
+.markdown-html a {
+  @apply text-blue-500 hover:underline;
 }
 
 .markdown-html ul {
-  @apply list-disc ms-4 mb-4;
+  @apply list-disc ms-4 my-4;
 }
 
 .markdown-html ol {
-  @apply list-decimal ms-4 mb-4;
+  @apply list-decimal ms-4 my-4;
 }
 
 .markdown-html li {
-  @apply my-2.5;
+  @apply mb-2;
 }
 
 .markdown-html blockquote {
-  @apply border-l-4 border-black italic pl-4 text-gray-700;
+  @apply border-l-4 border-black italic my-6 pl-4 text-gray-700;
 }
 
 .markdown-html table {
-  @apply min-w-full my-4
+  @apply min-w-full text-sm my-4
 }
 
 .markdown-html thead {
@@ -43,7 +47,7 @@
 }
 
 .markdown-html thead tr th {
-  @apply text-base font-semibold py-3;
+  @apply text-base font-semibold p-2.5;
 }
 
 .markdown-html tbody tr {
@@ -51,7 +55,7 @@
 }
 
 .markdown-html tbody tr td {
-  @apply text-base py-3;
+  @apply text-base p-2.5;
 }
 
 .markdown-html img {
@@ -59,7 +63,7 @@
 }
 
 .markdown-html hr {
-  @apply my-4;
+  @apply my-8;
 }
 
 .gatsby-resp-image-wrapper {
