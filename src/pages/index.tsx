@@ -1,45 +1,33 @@
 import * as React from "react"
 import { graphql, Link, type HeadFC, type PageProps } from "gatsby"
 import Layout from "../components/Layout";
-import PostCard from "../components/PostCard";
-import { getImage } from "gatsby-plugin-image";
+import Posts, { PostNode } from "../components/Posts";
+import Tabs from "../components/Tabs";
 
 type DataProps = {
   allMarkdownRemark: {
-    nodes: {
-      id: string;
-      frontmatter: {
-        date: string;
-        title: string;
-        categories: string;
-        thumbnail: any;
-      };
-      fields: {
-        slug: string;
-      };
-    }[];
+    nodes: PostNode[];
   };
 };
 
 const IndexPage = ({ data }: PageProps<DataProps>) => {
+  const categorySet = new Set<string>(['All']);
+  
+  data.allMarkdownRemark.nodes.forEach((node) => {
+    node.frontmatter.categories.split(' ').forEach((category) => {
+      categorySet.add(category);
+    });
+  });
+
   return (
     <Layout backgroundColor="bg-neutral-100">
-      <h1 className="text-4xl font-bold my-4">
-        Posts
-      </h1>
-      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-stretch">
-        {
-          data.allMarkdownRemark.nodes.map((node) => (
-            <PostCard 
-              title={node.frontmatter.title}
-              date={node.frontmatter.date}
-              categories={node.frontmatter.categories}
-              slug={node.fields.slug}
-              thumbnail={getImage(node.frontmatter.thumbnail)}
-            />
-          ))
-        }
-      </div>
+      <Tabs
+        selectedCategory={"All"}
+        categories={[...categorySet]}
+      />
+      <Posts 
+        nodes={data.allMarkdownRemark.nodes} 
+      />
     </Layout>
   );
 };

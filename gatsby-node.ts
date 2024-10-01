@@ -99,7 +99,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
   // Create category pages
   const categoryTemplate = path.resolve('./src/templates/Category.tsx');
-  const categorySet = new Set<string>();
+  const categorySet = new Set<string>(['All']);
   
   edges?.forEach(({ node }) => {
     node.frontmatter.categories.split(' ').forEach((category) => {
@@ -114,7 +114,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
       component: categoryTemplate,
       context: {
         category: category,
-        categoryRegex: `/${category}/i`,
+        categoryRegex: `/${category === 'All' ? "" : category}/i`,
         categories: categories,
         // edges: edges?.filter(({ node }) => node.frontmatter.categories.includes(category)),
       },
