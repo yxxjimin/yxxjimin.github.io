@@ -1,7 +1,16 @@
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import * as React from "react";
 import Layout from "../components/Layout";
 import PostTitle from "../components/PostTitle";
+
+type NavNode = {
+  frontmatter: {
+    title: string;
+  };
+  fields: {
+    slug: string;
+  };
+};
 
 type DataProps = {
   data: {
@@ -17,7 +26,24 @@ type DataProps = {
         slug: string;
       };
     };
+    next: NavNode;
+    prev: NavNode;
   };
+};
+
+const NavPost = ({ node, prev }: { node: NavNode, prev: boolean }) => {
+  return (
+    <Link to={node.fields.slug}>
+      <div className="h-full p-6 space-y-4 rounded-xl bg-neutral-100">
+        <p className="text-neutral-500">
+          {prev ? "이전 글": "다음 글"}
+        </p>
+        <p className="text-xl font-semibold">
+          {node.frontmatter.title}
+        </p>
+      </div>
+    </Link>
+  );
 };
 
 const Template = ({ data }: DataProps) => {
@@ -32,6 +58,10 @@ const Template = ({ data }: DataProps) => {
         className="markdown-html"
         dangerouslySetInnerHTML={{ __html: data.node.html }} 
       />
+      <div className="grid mt-10 gap-4 grid-cols-2 items-stretch">
+        {data.next && (<NavPost node={data.next} prev={true} />)}
+        {data.prev && (<NavPost node={data.prev} prev={false} />)}
+      </div>
     </Layout>
   );
 };
@@ -39,7 +69,7 @@ const Template = ({ data }: DataProps) => {
 export default Template;
 
 export const query = graphql`
-  query($slug: String) {
+  query($slug: String, $nextSlug: String, $prevSlug: String) {
     node: markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
@@ -47,6 +77,22 @@ export const query = graphql`
         title
         date(formatString: "MMMM D, YYYY")
         categories
+      }
+      fields {
+        slug
+      }
+    }
+    next: markdownRemark(fields: { slug: { eq: $nextSlug } }) {
+      frontmatter {
+        title
+      }
+      fields {
+        slug
+      }
+    }
+    prev: markdownRemark(fields: { slug: { eq: $prevSlug } }) {
+      frontmatter {
+        title
       }
       fields {
         slug

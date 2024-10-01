@@ -17,10 +17,14 @@ type GraphQLResult = {
           }
         };
         next: {
-          id: string;
+          fields: {
+            slug: string;
+          }
         };
         previous: {
-          id: string;
+          fields: {
+            slug: string;
+          }
         };
       }[];
     };
@@ -62,10 +66,14 @@ export const createPages: GatsbyNode["createPages"] = async ({
             }
           }
           next {
-            id
+            fields {
+              slug
+            }
           }
           previous {
-            id
+            fields {
+              slug
+            }
           }
         }
       }
@@ -84,8 +92,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
       component: postTemplate,
       context: {
         slug: node.fields.slug,
-        nextSlug: next?.id || null,
-        prevSlug: previous?.id || null,
+        nextSlug: next?.fields.slug ?? '',
+        prevSlug: previous?.fields.slug ?? '',
       },
     });
   });
