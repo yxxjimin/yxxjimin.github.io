@@ -429,11 +429,11 @@
  }
 
 .gatsby-highlight-code-line {
-	background-color: #dbeafe;
+	background-color: #4287ff1a;
+	box-shadow: 2px 0 0 0 #4287ff inset;
 	display: block;
 	margin-right: -1em;
 	margin-left: -1em;
 	padding-right: 1em;
 	padding-left: 0.75em;
-	border-left: 0.25em solid #bfdbfe;
 }
