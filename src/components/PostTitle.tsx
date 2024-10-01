@@ -12,7 +12,7 @@ const PostTitle = ({ title, date, categories }: Props) => {
     <div className="mt-4 mb-10">
       <div className="flex space-x-2">
         {categories.split(" ").map((cat, idx) => (
-          <Link to={`/${cat}`}>
+          <Link to={`/${cat.toLowerCase()}`}>
             <p
               key={idx} 
               className="text-xs font-md text-white bg-blue-500 rounded-full px-2 py-1">

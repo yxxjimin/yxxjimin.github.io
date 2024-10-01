@@ -11,6 +11,7 @@ type GraphQLResult = {
           frontmatter: {
             title: string;
             date: string;
+            categories: string;
           };
           fields: {
             slug: string;
@@ -60,6 +61,15 @@ export const createPages: GatsbyNode["createPages"] = async ({
             frontmatter {
               title
               date(formatString: "MMMM DD, YYYY")
+              categories
+              thumbnail {
+                childImageSharp {
+                  gatsbyImageData(
+                    placeholder: BLURRED
+                    formats: [AUTO, WEBP, AVIF]
+                  )
+                }
+              }
             }
             fields {
               slug
@@ -85,10 +95,37 @@ export const createPages: GatsbyNode["createPages"] = async ({
     return;
   }
 
-  const postTemplate = path.resolve('./src/templates/Template.tsx');
-  results.data?.allMarkdownRemark.edges.forEach(({ node, next, previous }) => {
+  const edges = results.data?.allMarkdownRemark.edges;
+
+  // Create category pages
+  const categoryTemplate = path.resolve('./src/templates/Category.tsx');
+  const categorySet = new Set<string>();
+  
+  edges?.forEach(({ node }) => {
+    node.frontmatter.categories.split(' ').forEach((category) => {
+      categorySet.add(category);
+    });
+  });
+
+  const categories = [...categorySet];
+  categories.forEach((category) => {
     createPage({
-      path: node.fields.slug,
+      path: `/${category.toLowerCase()}`,
+      component: categoryTemplate,
+      context: {
+        category: category,
+        categoryRegex: `/${category}/i`,
+        categories: categories,
+        // edges: edges?.filter(({ node }) => node.frontmatter.categories.includes(category)),
+      },
+    });
+  });
+
+  // Create blog posts
+  const postTemplate = path.resolve('./src/templates/Template.tsx');
+  edges?.forEach(({ node, next, previous }) => {
+    createPage({
+      path: path.join('post', node.fields.slug),
       component: postTemplate,
       context: {
         slug: node.fields.slug,

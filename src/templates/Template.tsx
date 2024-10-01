@@ -33,7 +33,7 @@ type DataProps = {
 
 const NavPost = ({ node, prev }: { node: NavNode, prev: boolean }) => {
   return (
-    <Link to={node.fields.slug}>
+    <Link to={`/post${node.fields.slug}`}>
       <div className="h-full p-6 space-y-4 rounded-xl bg-neutral-100">
         <p className="text-neutral-500">
           {prev ? "이전 글": "다음 글"}
@@ -59,8 +59,8 @@ const Template = ({ data }: DataProps) => {
         dangerouslySetInnerHTML={{ __html: data.node.html }} 
       />
       <div className="grid mt-10 gap-4 grid-cols-2 items-stretch">
-        {data.next && (<NavPost node={data.next} prev={true} />)}
-        {data.prev && (<NavPost node={data.prev} prev={false} />)}
+        {data.next ? (<NavPost node={data.next} prev={true} />) : (<p></p>)}
+        {data.prev ? (<NavPost node={data.prev} prev={false} />) : (<p></p>)}
       </div>
     </Layout>
   );

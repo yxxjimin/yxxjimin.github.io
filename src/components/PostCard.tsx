@@ -11,10 +11,8 @@ type Props = {
 };
 
 const PostCard = ({ title, date, categories, slug, thumbnail }: Props) => {
-  
-
   return (
-    <Link to={slug}>
+    <Link to={`/post${slug}`}>
       <div className="relative w-full h-full rounded-2xl bg-white transition duration-300 ease-in-out hover:shadow-2xl hover:text-blue-500 hover:-translate-y-0.5">
         {thumbnail && (
           <GatsbyImage 
